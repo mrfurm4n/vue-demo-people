@@ -21,7 +21,7 @@ export default {
   components: {UserCard, UserSkeleton},
   computed: {
     usersList () {
-      return this.$store.state.usersList;
+      return this.$store.state.filteredUsers;
     }
   },
 }

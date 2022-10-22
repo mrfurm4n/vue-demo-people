@@ -13,8 +13,8 @@ export default {
       set(value) {
         this.$store.commit('updateSearchQuery', value)
       }
-    }
-  },
+    },
+  }
 }
 </script>
 

@@ -11,7 +11,9 @@ export default createStore({
             searchQuery: '',
             activeTabKey: 'all',
             usersList: null,
-            error: null,
+            criticalError: null,
+            filteredUsers: null,
+            searchError: false,
         }
     },
     mutations: {
@@ -23,9 +25,16 @@ export default createStore({
         },
         updateUsersList (state, payload) {
             state.usersList = payload
+            state.filteredUsers = payload
         },
-        updateError (state, payload) {
-            state.error = payload
+        updateFilteredUsersList (state, payload) {
+            state.filteredUsers = payload
+        },
+        updateSearchError (state, payload) {
+            state.searchError = payload
+        },
+        updateCriticalError (state, payload) {
+            state.criticalError = payload
         }
     },
     actions: {
@@ -48,7 +57,7 @@ export default createStore({
                     this.commit('updateUsersList', response.data.items);
                 })
                 .catch((error) => {
-                    this.commit('updateError', error);
+                    this.commit('updateCriticalError', error);
                 })
         }
     }

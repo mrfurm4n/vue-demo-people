@@ -16,6 +16,7 @@
   import AppTop from '@/components/templates/AppTop'
   import UsersList from "@/components/molecules/UsersList";
   import { departmentsNames } from "@/config/deparments-names";
+  import {searchUsersByQuery} from "@/helpers";
 
   export default {
     data() {
@@ -31,11 +32,21 @@
     computed: {
       activeTabKey () {
         return this.$store.state.activeTabKey
+      },
+      searchQuery () {
+        return this.$store.state.searchQuery
       }
     },
     watch: {
       activeTabKey() {
         this.$store.dispatch('getUsersLists')
+      },
+      searchQuery() {
+        searchUsersByQuery(
+            this.searchQuery,
+            this.$store.state.usersList,
+            this.$store.commit
+        )
       }
     },
     mounted() {
