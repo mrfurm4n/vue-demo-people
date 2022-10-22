@@ -6,9 +6,8 @@
         :departmentsNames="departmentsNames"
         :activeTabKey="activeTabKey"
     />
-    <div class="users-list">
-      <UsersList />
-    </div>
+    <UsersList v-if="!appError" />
+    <ErrorScreen v-else :errorType="appError" />
   </div>
 </template>
 
@@ -16,7 +15,8 @@
   import AppTop from '@/components/templates/AppTop'
   import UsersList from "@/components/molecules/UsersList";
   import { departmentsNames } from "@/config/deparments-names";
-  import {searchUsersByQuery} from "@/helpers";
+  import {filterUsersBySearchQuery} from "@/helpers";
+  import ErrorScreen from "@/components/organisms/ErrorScreen";
 
   export default {
     data() {
@@ -26,7 +26,8 @@
     },
     components: {
       AppTop,
-      UsersList
+      UsersList,
+      ErrorScreen
     },
     emits: ['changeActiveTab'],
     computed: {
@@ -35,6 +36,9 @@
       },
       searchQuery () {
         return this.$store.state.searchQuery
+      },
+      appError () {
+        return this.$store.state.appError
       }
     },
     watch: {
@@ -42,7 +46,7 @@
         this.$store.dispatch('getUsersLists')
       },
       searchQuery() {
-        searchUsersByQuery(
+        filterUsersBySearchQuery(
             this.searchQuery,
             this.$store.state.usersList,
             this.$store.commit
@@ -59,6 +63,7 @@
   .page {
     display: flex;
     flex-direction: column;
+    height: 100vh;
   }
   .users-list {
     width: 100%;

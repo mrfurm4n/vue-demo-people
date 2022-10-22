@@ -13,7 +13,7 @@ export default createStore({
             usersList: null,
             criticalError: null,
             filteredUsers: null,
-            searchError: false,
+            appError: false,
         }
     },
     mutations: {
@@ -30,11 +30,8 @@ export default createStore({
         updateFilteredUsersList (state, payload) {
             state.filteredUsers = payload
         },
-        updateSearchError (state, payload) {
-            state.searchError = payload
-        },
-        updateCriticalError (state, payload) {
-            state.criticalError = payload
+        updateAppError (state, payload) {
+            state.appError = payload
         }
     },
     actions: {
@@ -56,8 +53,8 @@ export default createStore({
                 .then((response) => {
                     this.commit('updateUsersList', response.data.items);
                 })
-                .catch((error) => {
-                    this.commit('updateCriticalError', error);
+                .catch(() => {
+                    this.commit('updateAppError', 'criticalError');
                 })
         }
     }

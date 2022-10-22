@@ -1,5 +1,5 @@
-export const getSearchableUsers = (searchQuery, usersList) => {
-    if (searchQuery.length < 1) return usersList
+export const getFilteredUsersBySearchQuery = (searchQuery, usersList) => {
+    if (searchQuery === '') return usersList
 
     const normalizeQuery = searchQuery.toLowerCase()
 

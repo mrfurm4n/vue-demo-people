@@ -1,2 +1,2 @@
-export { getSearchableUsers } from './getSearchableUsers'
-export { searchUsersByQuery } from './searchUsersByQuery'
+export { getFilteredUsersBySearchQuery } from './getFilteredUsersBySearchQuery'
+export { filterUsersBySearchQuery } from './filterUsersBySearchQuery'

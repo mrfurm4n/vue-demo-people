@@ -19,6 +19,7 @@
 
 <style lang="scss" scoped>
   .department-tab {
+    min-width: fit-content;
     padding: 8px 12px;
     border-bottom: 2px solid transparent;
     font-weight: 500;
