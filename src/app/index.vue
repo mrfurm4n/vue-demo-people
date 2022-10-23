@@ -10,6 +10,7 @@ export default {
   <PagesRouting />
 </template>
 <style lang="scss">
-@import './index.module.css';
+@import './index.module.scss';
 @import 'normalize-scss';
+@include normalize();
 </style>

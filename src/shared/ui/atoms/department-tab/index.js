@@ -1,2 +1,2 @@
-import DepartmentTab from './index'
+import DepartmentTab from './index.vue'
 export default DepartmentTab

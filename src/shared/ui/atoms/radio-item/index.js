@@ -1,2 +1,2 @@
-import RadioItem from './index'
+import RadioItem from './index.vue'
 export default RadioItem

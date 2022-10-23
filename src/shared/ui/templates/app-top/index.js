@@ -1,2 +1,2 @@
-import AppTop from './index'
+import AppTop from './index.vue'
 export default AppTop

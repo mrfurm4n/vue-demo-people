@@ -1,2 +1,2 @@
-import UsersList from './index'
+import UsersList from './index.vue'
 export default UsersList

@@ -82,10 +82,10 @@ export const store = createStore({
       const filter = () => {
         const filteredUsers = getFilteredUsersBySearchQuery(searchQuery, usersList)
         const hasSearchQuery = searchQuery.length > 0
-        const hasFilteredUsers = Array.isArray(filteredUsers) ? filteredUsers.length > 0 : false
+        const hasFilteredUsers = filteredUsers.length > 0
         const isSearchError = !hasFilteredUsers && hasSearchQuery
-
         this.commit('updateAppError', isSearchError ? 'searchError' : false)
+
         this.commit('updateFilteredUsersList', filteredUsers)
       }
 

@@ -3,6 +3,11 @@
     border-color: #6534FF;
   }
 }
+.input-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 .caret,
 .input {
   font-weight: 500;
@@ -24,7 +29,6 @@
 .caret {
   position: absolute;
   left: 42px;
-  align-items: center;
   border-right: 2px solid transparent;
   animation: CaretPulsing 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards infinite;
   height: 20px;

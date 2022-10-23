@@ -1,2 +1,2 @@
-import UserCard from './index'
+import UserCard from './index.vue'
 export default UserCard

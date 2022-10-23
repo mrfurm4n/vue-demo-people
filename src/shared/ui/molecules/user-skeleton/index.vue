@@ -21,5 +21,5 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

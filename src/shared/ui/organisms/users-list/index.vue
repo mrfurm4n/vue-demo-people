@@ -19,30 +19,32 @@ export default {
 }
 </script>
 <template>
-  <div v-show="usersList && !isBirthdaySort" class="users-list">
-    <UserCard v-for="user in usersList" :key="user.id" :is-birthday-active="false" :user="user" />
-  </div>
-  <div v-show="usersList && isBirthdaySort" class="users-list">
-    <UserCard
-      v-for="user in slicesUsersList.currentYearList"
-      :key="user.id"
-      :user="user"
-      :is-birthday-active="true"
-    />
-    <div v-show="isSeparatorActive" class="separator">
-      <span class="separator__title">2023</span>
-    </div>
-    <UserCard
-      v-for="user in slicesUsersList.nextYearList"
-      :key="user.id"
-      :user="user"
-      :is-birthday-active="true"
-    />
-  </div>
-  <div v-show="!usersList" class="users-list">
-    <UserSkeleton v-for="item in [...Array(10).keys()]" :key="item" />
+  <div class="users-list">
+    <template v-if="usersList && !isBirthdaySort">
+      <UserCard v-for="user in usersList" :key="user.id" :is-birthday-active="false" :user="user" />
+    </template>
+    <template v-else-if="usersList && isBirthdaySort">
+      <UserCard
+        v-for="user in slicesUsersList.currentYearList"
+        :key="user.id"
+        :user="user"
+        :is-birthday-active="true"
+      />
+      <div v-show="isSeparatorActive" class="separator">
+        <span class="separator__title">2023</span>
+      </div>
+      <UserCard
+        v-for="user in slicesUsersList.nextYearList"
+        :key="user.id"
+        :user="user"
+        :is-birthday-active="true"
+      />
+    </template>
+    <template v-else>
+      <UserSkeleton v-for="item in [...Array(10).keys()]" :key="item" />
+    </template>
   </div>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

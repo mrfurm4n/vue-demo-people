@@ -1,5 +1,6 @@
 <script>
 import { RadioItem } from '@/shared/ui/atoms'
+
 export default {
   name: 'RadioList',
   components: { RadioItem },
@@ -18,6 +19,7 @@ export default {
   },
   methods: {
     changeRadioType(radioType) {
+      this.$store.commit('updateShowModal', false)
       this.$store.commit('updateActiveSortType', radioType)
     },
   },
@@ -35,5 +37,5 @@ export default {
   </ul>
 </template>
 <style lang="scss" scoped>
-@import 'index.module.css';
+@import './index.module.scss';
 </style>

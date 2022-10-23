@@ -1,2 +1,2 @@
-import UserSkeleton from './index'
+import UserSkeleton from './index.vue'
 export default UserSkeleton

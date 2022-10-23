@@ -1,4 +1,5 @@
 export const getFilteredUsersBySearchQuery = (searchQuery, usersList) => {
+  if (!Array.isArray(usersList)) return null
   if (searchQuery === '') return usersList
 
   const normalizeQuery = searchQuery.toLowerCase()

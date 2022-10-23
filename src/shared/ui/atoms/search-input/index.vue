@@ -20,16 +20,18 @@ export default {
 }
 </script>
 <template>
-  <span class="caret" :class="{ focused: focused }">{{ searchQuery }}</span>
-  <input
-    v-model="searchQuery"
-    class="input"
-    type="text"
-    :placeholder="placeholder"
-    @focus="focused = true"
-    @blur="focused = false"
-  />
+  <div class="input-wrap">
+    <span class="caret" :class="{ focused: focused }">{{ searchQuery }}</span>
+    <input
+      v-model="searchQuery"
+      class="input"
+      type="text"
+      :placeholder="placeholder"
+      @focus="focused = true"
+      @blur="focused = false"
+    />
+  </div>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

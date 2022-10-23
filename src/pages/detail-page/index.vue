@@ -61,7 +61,7 @@ export default {
   </div>
   <div v-else class="detail">
     <div v-if="defer(1)" class="detail-head">
-      <router-link :to="{ name: 'home' }" class="detail-head-link">
+      <router-link :to="{ name: 'home-page' }" class="detail-head-link">
         <BackIcon class="header-head-link__icon" />
       </router-link>
       <img :src="user.avatarUrl" alt="" class="detail-head__photo" />
@@ -80,14 +80,14 @@ export default {
         </li>
         <li class="detail-body-list-item">
           <PhoneIcon class="detail-body-list-item__icon" />
-          <a :href="`tel:${user.phone}`" class="detail-body-list-item__title">{{
-            normalizePhone(user.phone)
-          }}</a>
+          <a :href="`tel:${user.phone}`" class="detail-body-list-item__title">
+            {{ normalizePhone(user.phone) }}
+          </a>
         </li>
       </ui>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

@@ -1,6 +1,6 @@
 <script>
 import { CloseIcon } from '@/shared/icons'
-import { RadioList } from '@/shared/ui/organisms'
+import { RadioList } from '@/shared/ui/molecules'
 export default {
   name: 'ModalWindow',
   components: { RadioList, CloseIcon },
@@ -33,5 +33,5 @@ export default {
   </teleport>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

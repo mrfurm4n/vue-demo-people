@@ -17,7 +17,7 @@ export default {
 }
 </script>
 <template>
-  <router-link class="card" :to="{ name: 'detail', params: { id: user.id } }">
+  <router-link class="card" :to="{ name: 'detail-page', params: { id: user.id } }">
     <img :src="user.avatarUrl" :alt="user.name" class="card__photo" />
     <div calss="card-info">
       <p class="card-info__name">{{ user.firstName }} {{ user.lastName }}</p>
@@ -28,5 +28,5 @@ export default {
   </router-link>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

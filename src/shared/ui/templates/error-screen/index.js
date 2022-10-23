@@ -1,2 +1,2 @@
-import ErrorScreen from './index'
+import ErrorScreen from './index.vue'
 export default ErrorScreen

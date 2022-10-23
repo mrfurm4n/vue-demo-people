@@ -1,8 +1,8 @@
-import BackIcon from './BackIcon'
-import CloseIcon from './CloseIcon'
-import PhoneIcon from './PhoneIcon'
-import SearchIcon from './SearchIcon'
-import SortIcon from './SortIcon'
-import StarIcon from './StarIcon'
+import BackIcon from './BackIcon.vue'
+import CloseIcon from './CloseIcon.vue'
+import PhoneIcon from './PhoneIcon.vue'
+import SearchIcon from './SearchIcon.vue'
+import SortIcon from './SortIcon.vue'
+import StarIcon from './StarIcon.vue'
 
 export { BackIcon, CloseIcon, PhoneIcon, SearchIcon, SortIcon, StarIcon }

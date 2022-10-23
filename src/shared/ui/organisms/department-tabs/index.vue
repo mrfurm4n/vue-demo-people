@@ -12,14 +12,14 @@ export default {
 <template>
   <div class="department-tabs">
     <DepartmentTab
-      v-for="key in Object.keys(departmentsNames)"
-      :key="key"
-      :title="departmentsNames[key]"
-      :is-active="key === activeTabKey"
-      :tab-key="key"
+      v-for="tabKey in Object.keys(departmentsNames)"
+      :key="tabKey"
+      :title="departmentsNames[tabKey]"
+      :is-active="tabKey === activeTabKey"
+      :tab-key="tabKey"
     />
   </div>
 </template>
 <style lang="scss" scoped>
-@import './index.module.css';
+@import './index.module.scss';
 </style>

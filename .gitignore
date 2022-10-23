@@ -3,6 +3,7 @@ node_modules
 /dist
 .sass-cache
 *.map
+*.css
 
 # local env files
 .env.local
