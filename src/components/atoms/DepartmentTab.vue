@@ -1,17 +1,15 @@
 <template>
-  <button class="department-tab" :class="{active: tabKey === activeTabKey}" @click="changeActiveTab">
+  <button class="department-tab" :class="{active: isActive}" @click="changeActiveTab">
     {{ title }}
   </button>
 </template>
 
 <script>
   export default {
-    props: ['title', 'tabKey', 'activeTabKey'],
+    props: ['title', 'tabKey', 'isActive'],
     methods: {
       changeActiveTab() {
-        this.$store.commit('updateActiveTabKey', {
-          tabKey: this.tabKey
-        })
+        this.$store.commit('updateActiveTabKey', this.tabKey)
       }
     }
   }

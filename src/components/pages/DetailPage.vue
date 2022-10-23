@@ -3,7 +3,7 @@
     <p class="loading__title">Загрузка...</p>
   </div>
   <div v-else class="detail">
-    <div class="detail-head">
+    <div v-if="defer(1)" class="detail-head">
       <router-link :to="{name: 'home'}" class="detail-head-link">
         <BackIcon class="header-head-link__icon" />
       </router-link>
@@ -14,7 +14,7 @@
       </div>
       <p class="detail-head__status">{{ user.department }}</p>
     </div>
-    <div class="detail-body">
+    <div v-if="defer(2)" class="detail-body">
       <p class="detail-body__age">{{ getAge(user.birthday) }}</p>
       <ui class="detail-body-list">
         <li class="detail-body-list-item">
@@ -37,6 +37,7 @@ import { getNormalizeAge, getNormalizeBirthday, getNormalizePhone } from "@/help
 import StarIcon from '@/components/icons/StarIcon'
 import PhoneIcon from '@/components/icons/PhoneIcon'
 import BackIcon from '@/components/icons/BackIcon'
+import Defer from '@/mixins/Defer';
 
 export default {
   props: ['id'],
@@ -48,6 +49,9 @@ export default {
       error: null,
     }
   },
+  mixins: [
+    Defer()
+  ],
   created() {
     this.$watch(
         () => this.id,
@@ -76,6 +80,7 @@ export default {
         .then((response) => {
           this.loading = false
           this.user = response.data.items[0]
+          console.log(response)
         })
         .catch((error) => {
           this.loading = false
@@ -102,6 +107,10 @@ export default {
     }
   }
   .detail {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
     &-head {
       position: relative;
       padding-top: 72px;

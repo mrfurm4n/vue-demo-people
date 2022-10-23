@@ -1,6 +1,6 @@
 <template>
   <div class="search-bar">
-    <button class="search-bar__search-btn">
+    <button class="search-bar__search-btn" @click="filterUsers">
       <SearchIcon :isActive="isSearchActive" />
     </button>
     <SearchInput :placeholder="placeholder" />
@@ -31,6 +31,9 @@ export default {
   methods: {
     showModal() {
       this.$store.commit('updateShowModal', true)
+    },
+    filterUsers() {
+      this.$store.dispatch('filterUsers');
     }
   }
 }

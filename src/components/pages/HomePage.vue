@@ -1,13 +1,17 @@
 <template>
   <div class="page">
-    <AppTop
-        pageTitle="Поиск"
-        searchInputPlaceholder="Введи имя, фамилию, тег..."
-        :departmentsNames="departmentsNames"
-        :activeTabKey="activeTabKey"
-    />
-    <UsersList :activeSortType="activeSortType" :usersList="usersList" v-if="!appError" />
-    <ErrorScreen v-else :errorType="appError" />
+    <template v-if="defer(1)" >
+      <AppTop
+          pageTitle="Поиск"
+          searchInputPlaceholder="Введи имя, фамилию, тег..."
+          :departmentsNames="departmentsNames"
+          :activeTabKey="activeTabKey"
+      />
+    </template>
+    <template v-if="defer(2)" >
+      <UsersList :activeSortType="activeSortType" :usersList="usersList" v-show="!appError" />
+    </template>
+    <ErrorScreen v-if="appError" :errorType="appError" />
   </div>
   <ModalWindow />
 </template>
@@ -19,6 +23,7 @@
   import { departmentsNames } from "@/config/deparments-names";
   import { getSortedUsersByType} from "@/helpers";
   import ErrorScreen from "@/components/organisms/ErrorScreen";
+  import Defer from '@/mixins/Defer';
 
   export default {
     data() {
@@ -26,6 +31,9 @@
         departmentsNames: departmentsNames
       }
     },
+    mixins: [
+      Defer()
+    ],
     components: {
       AppTop,
       UsersList,
@@ -51,9 +59,6 @@
       }
     },
     watch: {
-      usersList() {
-        this.filterUsers();
-      },
       searchQuery() {
         this.filterUsers();
       },
@@ -82,6 +87,7 @@
     mounted() {
       this.updateUsers();
       this.sortUsers();
+      this.filterUsers();
     }
   }
 </script>
@@ -91,12 +97,5 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-  }
-  .users-list {
-    width: 100%;
-    padding-top: 16px;
-    padding-right: 16px;
-    padding-left: 16px;
-    overflow-y: auto;
   }
 </style>

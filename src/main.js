@@ -1,9 +1,10 @@
 import { createApp } from 'vue';
 import store from './store';
 import App from './App.vue';
-import HomePage from "@/components/pages/HomePage";
-import DetailPage from "@/components/pages/DetailPage";
 import {createRouter, createWebHistory} from "vue-router";
+
+const HomePage = () => import('@/components/pages/HomePage.vue')
+const DetailPage = () => import('@/components/pages/DetailPage.vue')
 
 const routes = [
     { name: 'home', path: '/', component: HomePage },

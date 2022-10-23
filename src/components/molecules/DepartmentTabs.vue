@@ -3,7 +3,7 @@
     <DepartmentTab
         v-for="key in Object.keys(departmentsNames)"
         v-bind:title="departmentsNames[key]"
-        v-bind:activeTabKey="activeTabKey"
+        v-bind:isActive="key === activeTabKey"
         v-bind:tabKey="key"
         v-bind:key="key"
     />
@@ -17,7 +17,7 @@
     props: ['departmentsNames', 'activeTabKey'],
     components: {
       DepartmentTab
-    }
+    },
   }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="users-list" v-if="usersList && !isBirthdaySort">
+  <div class="users-list" v-show="usersList && !isBirthdaySort">
     <UserCard
         v-for="user in usersList"
         v-bind:isBirthdayActive="false"
@@ -7,14 +7,14 @@
         v-bind:key="user.id"
     />
   </div>
-  <div class="users-list" v-else-if="usersList && isBirthdaySort">
+  <div class="users-list" v-show="usersList && isBirthdaySort">
     <UserCard
         v-for="user in slicesUsersList.currentYearList"
         v-bind:user="user"
         v-bind:isBirthdayActive="true"
         v-bind:key="user.id"
     />
-    <div class="separator" v-if="isSeparatorActive">
+    <div class="separator" v-show="isSeparatorActive">
       <span class="separator__title">2023</span>
     </div>
     <UserCard
@@ -24,7 +24,7 @@
         v-bind:key="user.id"
     />
   </div>
-  <div class="users-list" v-else>
+  <div class="users-list" v-show="!usersList">
     <UserSkeleton
       v-for="item in [...Array(10).keys()]"
       v-bind:key="item"
@@ -55,10 +55,12 @@ export default {
 
 <style lang="scss" scoped>
 .users-list {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow-y: auto;
 }
 .separator {
   margin: 24px;

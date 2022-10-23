@@ -3,7 +3,7 @@
     <img :src="error.image" :alt="errorType" class="error__img">
     <p class="error__title">{{ error.title }}</p>
     <p class="error__subtitle">{{ error.subtitle }}</p>
-    <button v-if="error.buttonTitle" class="error__btn" @click="updateQuery">{{ error.buttonTitle }}</button>
+    <button v-show="error.buttonTitle" class="error__btn" @click="updateQuery">{{ error.buttonTitle }}</button>
   </div>
 </template>
 

@@ -27,19 +27,19 @@ export default createStore({
     },
     mutations: {
         updateActiveTabKey (state, payload) {
-            setLocalStorage('active-tab', payload.tabKey)
-            state.activeTabKey = payload.tabKey
+            setLocalStorage('active-tab', payload)
+            state.activeTabKey = payload
         },
         updateSearchQuery (state, payload) {
             setLocalStorage('search-query', payload)
             state.searchQuery = payload
         },
         updateUsersList (state, payload) {
-            state.usersList = payload
-            state.filteredUsers = payload
+            state.usersList = payload === null ? null : payload.map(item => Object.freeze(item))
+            state.filteredUsers = payload === null ? null : payload.map(item => Object.freeze(item))
         },
         updateFilteredUsersList (state, payload) {
-            state.filteredUsers = payload
+            state.filteredUsers = payload === null ? null : payload.map(item => Object.freeze(item))
         },
         updateAppError (state, payload) {
             state.appError = payload
@@ -82,7 +82,7 @@ export default createStore({
             const filter = () => {
                 const filteredUsers = getFilteredUsersBySearchQuery(searchQuery, usersList)
                 const hasSearchQuery = searchQuery.length > 0;
-                const hasFilteredUsers = filteredUsers.length > 0;
+                const hasFilteredUsers = Array.isArray(filteredUsers) ? filteredUsers.length > 0 : false;
                 const isSearchError = !hasFilteredUsers && hasSearchQuery;
 
                 this.commit('updateAppError', isSearchError ? 'searchError' : false);
