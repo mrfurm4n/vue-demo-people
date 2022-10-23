@@ -17,7 +17,7 @@
   import AppTop from '@/components/templates/AppTop'
   import UsersList from "@/components/molecules/UsersList";
   import { departmentsNames } from "@/config/deparments-names";
-  import {filterUsersBySearchQuery, getSortedUsersByType} from "@/helpers";
+  import { getSortedUsersByType} from "@/helpers";
   import ErrorScreen from "@/components/organisms/ErrorScreen";
 
   export default {
@@ -51,12 +51,11 @@
       }
     },
     watch: {
+      usersList() {
+        this.filterUsers();
+      },
       searchQuery() {
-        filterUsersBySearchQuery(
-            this.searchQuery,
-            this.$store.state.usersList,
-            this.$store.commit
-        )
+        this.filterUsers();
       },
       activeTabKey() {
         this.updateUsers();
@@ -66,6 +65,9 @@
       }
     },
     methods: {
+      filterUsers() {
+        this.$store.dispatch('filterUsers');
+      },
       updateUsers () {
         this.$store.dispatch('getUsersLists')
       },
@@ -74,7 +76,6 @@
             this.activeSortType,
             this.$store.state.filteredUsers
         )
-        console.log(sortedUsers)
         this.$store.commit('updateFilteredUsersList', sortedUsers)
       }
     },

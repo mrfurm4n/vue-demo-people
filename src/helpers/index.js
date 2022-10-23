@@ -1,5 +1,4 @@
 export { getFilteredUsersBySearchQuery } from './getFilteredUsersBySearchQuery'
-export { filterUsersBySearchQuery } from './filterUsersBySearchQuery'
 export { getBirthdayObject} from './getBirthdayObject'
 export { getSortedUsersByType } from './getSortedUsersByType'
 export { getTodayDateObject } from './getTodayDateObject'

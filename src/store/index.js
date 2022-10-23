@@ -2,28 +2,36 @@ import { createStore } from 'vuex'
 import Axios from 'axios';
 import { setupCache } from 'axios-cache-interceptor'
 import { apiUrl } from '@/config/apiUrl';
-import { getSortedUsersByType} from "@/helpers";
+import {
+    getSortedUsersByType,
+    getLocalStorage,
+    setLocalStorage,
+    getFilteredUsersBySearchQuery
+} from "@/helpers";
 
 const axios = setupCache(Axios);
+let filterTimer = null;
 
 export default createStore({
     state () {
         return {
-            searchQuery: '',
-            activeTabKey: 'all',
+            searchQuery: getLocalStorage('search-query', ''),
+            activeTabKey: getLocalStorage('active-tab', 'all'),
             usersList: null,
             criticalError: null,
             filteredUsers: null,
             appError: false,
             showModal: false,
-            activeSortType: 'alphabet'
+            activeSortType: getLocalStorage('sort-type', 'alphabet')
         }
     },
     mutations: {
         updateActiveTabKey (state, payload) {
+            setLocalStorage('active-tab', payload.tabKey)
             state.activeTabKey = payload.tabKey
         },
         updateSearchQuery (state, payload) {
+            setLocalStorage('search-query', payload)
             state.searchQuery = payload
         },
         updateUsersList (state, payload) {
@@ -40,6 +48,7 @@ export default createStore({
             state.showModal = payload
         },
         updateActiveSortType (state, payload) {
+            setLocalStorage('sort-type', payload)
             state.activeSortType = payload
         }
     },
@@ -65,6 +74,23 @@ export default createStore({
                 .catch(() => {
                     this.commit('updateAppError', 'criticalError');
                 })
+        },
+        filterUsers() {
+            const searchQuery = this.state.searchQuery;
+            const usersList = this.state.usersList;
+
+            const filter = () => {
+                const filteredUsers = getFilteredUsersBySearchQuery(searchQuery, usersList)
+                const hasSearchQuery = searchQuery.length > 0;
+                const hasFilteredUsers = filteredUsers.length > 0;
+                const isSearchError = !hasFilteredUsers && hasSearchQuery;
+
+                this.commit('updateAppError', isSearchError ? 'searchError' : false);
+                this.commit('updateFilteredUsersList', filteredUsers)
+            }
+
+            clearTimeout(filterTimer);
+            filterTimer = setTimeout(() => filter(), 500);
         }
     },
     getters: {
