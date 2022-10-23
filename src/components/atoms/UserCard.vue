@@ -6,17 +6,23 @@
       <p class="card-info__tag">{{ user.userTag }}</p>
       <p class="card-info__department">{{ department }}</p>
     </div>
+    <p v-if="isBirthdayActive" class="card__birthday">{{ birthday }}</p>
   </div>
 </template>
 
 <script>
 import {departmentsNames} from "@/config/deparments-names";
+import { getNormalizeBirthday } from "@/helpers";
+
 export default {
-  props: ['user'],
+  props: ['user', 'isBirthdayActive'],
   computed: {
     department () {
       const departmentKey = this.user.department
       return departmentsNames[departmentKey]
+    },
+    birthday () {
+      return getNormalizeBirthday(this.user.birthday);
     }
   }
 }
@@ -27,12 +33,22 @@ export default {
     display: flex;
     align-items: center;
     padding: 6px 0;
+    position: relative;
     &__photo {
       width: 72px;
       height: 72px;
       border-radius: 50%;
       background: linear-gradient(90deg, #F3F3F6 0%, #FAFAFA 100%);
       margin-right: 16px;
+    }
+    &__birthday {
+      position: absolute;
+      right: 0;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 20px;
+      text-align: right;
+      color: #55555C;
     }
     &-info {
       &__name {

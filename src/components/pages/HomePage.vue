@@ -6,16 +6,18 @@
         :departmentsNames="departmentsNames"
         :activeTabKey="activeTabKey"
     />
-    <UsersList v-if="!appError" />
+    <UsersList :activeSortType="activeSortType" :usersList="usersList" v-if="!appError" />
     <ErrorScreen v-else :errorType="appError" />
   </div>
+  <ModalWindow />
 </template>
 
 <script>
+  import ModalWindow from "@/components/organisms/ModalWindow";
   import AppTop from '@/components/templates/AppTop'
   import UsersList from "@/components/molecules/UsersList";
   import { departmentsNames } from "@/config/deparments-names";
-  import {filterUsersBySearchQuery} from "@/helpers";
+  import {filterUsersBySearchQuery, getSortedUsersByType} from "@/helpers";
   import ErrorScreen from "@/components/organisms/ErrorScreen";
 
   export default {
@@ -27,10 +29,14 @@
     components: {
       AppTop,
       UsersList,
-      ErrorScreen
+      ErrorScreen,
+      ModalWindow
     },
     emits: ['changeActiveTab'],
     computed: {
+      usersList () {
+        return this.$store.getters.getFilteredUsers;
+      },
       activeTabKey () {
         return this.$store.state.activeTabKey
       },
@@ -39,22 +45,42 @@
       },
       appError () {
         return this.$store.state.appError
+      },
+      activeSortType () {
+        return this.$store.state.activeSortType
       }
     },
     watch: {
-      activeTabKey() {
-        this.$store.dispatch('getUsersLists')
-      },
       searchQuery() {
         filterUsersBySearchQuery(
             this.searchQuery,
             this.$store.state.usersList,
             this.$store.commit
         )
+      },
+      activeTabKey() {
+        this.updateUsers();
+      },
+      activeSortType() {
+        this.sortUsers();
+      }
+    },
+    methods: {
+      updateUsers () {
+        this.$store.dispatch('getUsersLists')
+      },
+      sortUsers () {
+        const sortedUsers = getSortedUsersByType(
+            this.activeSortType,
+            this.$store.state.filteredUsers
+        )
+        console.log(sortedUsers)
+        this.$store.commit('updateFilteredUsersList', sortedUsers)
       }
     },
     mounted() {
-      this.$store.dispatch('getUsersLists')
+      this.updateUsers();
+      this.sortUsers();
     }
   }
 </script>

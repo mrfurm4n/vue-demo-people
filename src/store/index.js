@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import Axios from 'axios';
 import { setupCache } from 'axios-cache-interceptor'
 import { apiUrl } from '@/config/apiUrl';
+import { getSortedUsersByType} from "@/helpers";
 
 const axios = setupCache(Axios);
 
@@ -14,6 +15,8 @@ export default createStore({
             criticalError: null,
             filteredUsers: null,
             appError: false,
+            showModal: false,
+            activeSortType: 'alphabet'
         }
     },
     mutations: {
@@ -32,6 +35,12 @@ export default createStore({
         },
         updateAppError (state, payload) {
             state.appError = payload
+        },
+        updateShowModal (state, payload) {
+            state.showModal = payload
+        },
+        updateActiveSortType (state, payload) {
+            state.activeSortType = payload
         }
     },
     actions: {
@@ -56,6 +65,14 @@ export default createStore({
                 .catch(() => {
                     this.commit('updateAppError', 'criticalError');
                 })
+        }
+    },
+    getters: {
+        getFilteredUsers (state) {
+            return getSortedUsersByType(
+                state.activeSortType,
+                state.filteredUsers
+            )
         }
     }
 })

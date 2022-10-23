@@ -4,7 +4,7 @@
       <SearchIcon :isActive="isSearchActive" />
     </button>
     <SearchInput :placeholder="placeholder" />
-    <button class="search-bar__sort-btn">
+    <button class="search-bar__sort-btn" @click="showModal">
       <SortIcon />
     </button>
   </div>
@@ -27,6 +27,11 @@ export default {
     SearchInput,
     SortIcon,
     SearchIcon,
+  },
+  methods: {
+    showModal() {
+      this.$store.commit('updateShowModal', true)
+    }
   }
 }
 </script>
