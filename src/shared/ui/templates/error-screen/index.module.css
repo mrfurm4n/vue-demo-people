@@ -1,0 +1,33 @@
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%; }
+  .error__img {
+    width: 56px;
+    height: 56px; }
+  .error__title {
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 22px;
+    text-align: center;
+    color: #050510; }
+  .error__subtitle {
+    margin-top: 12px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #97979B; }
+  .error__btn {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #6534FF; }
+
+/*# sourceMappingURL=index.module.css.map */

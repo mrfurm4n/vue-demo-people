@@ -1,0 +1,16 @@
+.top {
+  padding-top: 8px;
+  border-bottom: 0.3px solid #C3C3C6;
+  width: 100%;
+  &__title {
+    padding: 8px 24px 12px 24px;
+  }
+  &-search {
+    padding: 6px 16px;
+  }
+  &-tabs {
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

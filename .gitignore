@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
 /dist
-*/.sass-cache
-
+.sass-cache
+*.map
 
 # local env files
 .env.local

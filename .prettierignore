@@ -1,0 +1,8 @@
+.eslintrc.js
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+build
+coverage
+*.html

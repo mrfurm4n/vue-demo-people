@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  background: #FFFFFF; }
+
+* {
+  box-sizing: border-box;
+  outline-color: transparent; }
+
+h1, h2, h3, h4, h5, h6, p, ul, button, input {
+  margin: 0;
+  padding: 0; }
+
+a, button {
+  cursor: pointer; }
+
+a {
+  text-decoration: none; }
+
+input, button {
+  border: none;
+  background: none; }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease; }
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0; }
+
+/*# sourceMappingURL=index.module.css.map */

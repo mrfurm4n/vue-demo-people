@@ -1,0 +1,14 @@
+.search-bar {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center; }
+  .search-bar__search-btn, .search-bar__sort-btn {
+    position: absolute; }
+  .search-bar__search-btn {
+    left: 12px; }
+  .search-bar__sort-btn {
+    right: 12px; }
+
+/*# sourceMappingURL=index.module.css.map */
