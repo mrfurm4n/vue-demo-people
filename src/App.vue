@@ -1,14 +1,10 @@
 <template>
-  <Homepage />
+  <router-view />
 </template>
 
 <script>
-import Homepage from './components/pages/HomePage'
 export default {
   name: 'App',
-  components: {
-    Homepage
-  }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <router-link class="card" :to="{ name: 'detail', params: { id: user.id, user: user } }">
     <img :src="user.avatarUrl" :alt="user.name" class="card__photo">
     <div calss="card-info">
       <p class="card-info__name">{{ user.firstName }} {{ user.lastName }}</p>
@@ -7,7 +7,7 @@
       <p class="card-info__department">{{ department }}</p>
     </div>
     <p v-if="isBirthdayActive" class="card__birthday">{{ birthday }}</p>
-  </div>
+  </router-link>
 </template>
 
 <script>
