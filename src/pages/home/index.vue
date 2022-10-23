@@ -68,6 +68,7 @@ export default {
 </script>
 <template>
   <div class="page">
+    <ModalWindow />
     <template v-if="defer(1)">
       <AppTop
         page-title="Поиск"
@@ -81,7 +82,6 @@ export default {
     </template>
     <ErrorScreen v-if="appError" :error-type="appError" />
   </div>
-  <ModalWindow />
 </template>
 <style lang="scss" scoped>
 @import './index.module.css';
